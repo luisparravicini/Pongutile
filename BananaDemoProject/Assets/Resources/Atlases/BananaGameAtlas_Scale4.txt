@@ -1,0 +1,140 @@
+{"frames": {
+
+"Banana.png":
+{
+	"frame": {"x":1491,"y":3,"w":400,"h":218},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":36,"y":20,"w":400,"h":218},
+	"sourceSize": {"w":480,"h":280}
+},
+"CloseButton_normal.png":
+{
+	"frame": {"x":215,"y":3,"w":208,"h":206},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":4,"w":208,"h":206},
+	"sourceSize": {"w":216,"h":216}
+},
+"CloseButton_over.png":
+{
+	"frame": {"x":3,"y":3,"w":208,"h":206},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":4,"w":208,"h":206},
+	"sourceSize": {"w":216,"h":216}
+},
+"FranchiseFont_Scale4.png":
+{
+	"frame": {"x":885,"y":1359,"w":992,"h":662},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":8,"w":992,"h":662},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"Monkey_0.png":
+{
+	"frame": {"x":447,"y":1343,"w":434,"h":568},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":0,"w":434,"h":568},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_1.png":
+{
+	"frame": {"x":1351,"y":789,"w":436,"h":566},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":42,"y":2,"w":436,"h":566},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_2.png":
+{
+	"frame": {"x":3,"y":1341,"w":440,"h":566},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":2,"w":440,"h":566},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_3.png":
+{
+	"frame": {"x":455,"y":775,"w":442,"h":564},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":36,"y":4,"w":442,"h":564},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_4.png":
+{
+	"frame": {"x":901,"y":777,"w":446,"h":564},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":32,"y":4,"w":446,"h":564},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_5.png":
+{
+	"frame": {"x":3,"y":775,"w":448,"h":562},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":30,"y":6,"w":448,"h":562},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_6.png":
+{
+	"frame": {"x":923,"y":213,"w":450,"h":560},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":28,"y":8,"w":450,"h":560},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_7.png":
+{
+	"frame": {"x":1377,"y":225,"w":452,"h":560},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":26,"y":8,"w":452,"h":560},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_8.png":
+{
+	"frame": {"x":3,"y":213,"w":454,"h":558},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":24,"y":10,"w":454,"h":558},
+	"sourceSize": {"w":520,"h":600}
+},
+"Monkey_9.png":
+{
+	"frame": {"x":461,"y":213,"w":458,"h":558},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":20,"y":10,"w":458,"h":558},
+	"sourceSize": {"w":520,"h":600}
+},
+"YellowButton_normal.png":
+{
+	"frame": {"x":959,"y":3,"w":528,"h":206},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":4,"w":528,"h":206},
+	"sourceSize": {"w":536,"h":216}
+},
+"YellowButton_over.png":
+{
+	"frame": {"x":427,"y":3,"w":528,"h":206},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":4,"w":528,"h":206},
+	"sourceSize": {"w":536,"h":216}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "BananaGameAtlas_Scale4.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bf64079b9adae0c6a05df1b748e874bc$"
+}
+}
