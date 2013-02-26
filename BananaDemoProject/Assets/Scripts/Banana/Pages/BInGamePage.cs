@@ -76,12 +76,12 @@ public class BInGamePage : BPage
 
 		_player1Hint.alpha = 0.15f;
 		//TODO should remove it instead of setting alpha = 0
-		Go.to (_player1Hint, 0.6f, new TweenConfig ().
+		Go.to (_player1Hint, 0.9f, new TweenConfig ().
 			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong).floatProp("alpha", 0));
 		
 		_player2Hint.alpha = 0.15f;
 		//TODO should remove it instead of setting alpha = 0
-		Go.to (_player2Hint, 0.6f, new TweenConfig ().
+		Go.to (_player2Hint, 0.9f, new TweenConfig ().
 			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong).floatProp("alpha", 0));
 
 		HandleResize (true); //force resize to position everything at the start
