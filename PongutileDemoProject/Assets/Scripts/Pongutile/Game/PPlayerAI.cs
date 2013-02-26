@@ -13,6 +13,7 @@ public class PPlayerAI
 	private bool _disabled;
 	private float nextMove;
 	private PInputType currentMove;
+	private float _lastBallY;
 	
 	public PPlayerAI (PPlayer player, PBall ball)
 	{
@@ -20,6 +21,7 @@ public class PPlayerAI
 		_ball = ball;
 		_disabled = false;
 		nextMove = 0;
+		_lastBallY = 0;
 	}
 
 	public void Disable ()
@@ -42,18 +44,17 @@ public class PPlayerAI
 			return;
 
 		nextMove = 0.1f;
-
-		float delta = _player.height * 0.7f;
 		
-		if (Math.Abs (Math.Abs (_player.y) - Math.Abs (_ball.y)) < delta)
+		float distanceY = PUtil.UniDistance(_lastBallY, _ball.y);
+		if (distanceY < 0.5f)
 			currentMove = PInputType.None;
-		else if (_player.y < _ball.y)
+		else
+			if (_player.y < _ball.y)
 			currentMove = PInputType.Up;
 		else if (_player.y > _ball.y)
 			currentMove = PInputType.Down;
-		else
-			currentMove = PInputType.None;
 
 		_player.Move (currentMove);
+		_lastBallY = _ball.y;
 	}
 }
