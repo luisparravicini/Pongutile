@@ -5,7 +5,6 @@ using System;
 public class BScorePage : BPage
 {
 	private FSprite _background;
-	private BMonkey _monkey;
 	private FButton _againButton;
 	private FLabel _scoreLabel;
 	private FLabel _bestScoreLabel;
@@ -38,11 +37,6 @@ public class BScorePage : BPage
 		
 		//this will scale the background up to fit the screen
 		//but it won't let it shrink smaller than 100%
-
-		_monkey = new BMonkey();
-		AddChild(_monkey);
-		_monkey.x = -5.0f;
-		_monkey.y = -2.0f;
 		
 		_againButton = new FButton("YellowButton_normal.png", "YellowButton_over.png", "ClickSound");
 		_againButton.AddLabel("Franchise","AGAIN?",new Color(0.45f,0.25f,0.0f,1.0f));
@@ -83,14 +77,6 @@ public class BScorePage : BPage
 			setDelay(0.3f).
 			floatProp("scale",1.0f).
 			setEaseType(EaseType.BackOut));
-		
-		_monkey.scale = 0.0f;
-		
-		Go.to(_monkey, 0.5f, new TweenConfig().
-			setDelay(0.1f).
-			floatProp("scale",1.0f).
-			setEaseType(EaseType.BackOut));
-		
 		
 		_againButton.scale = 0.0f;
 		
