@@ -15,8 +15,8 @@ public class BMain : MonoBehaviour
 {	
 	public static BMain instance;
 	
-	public int score = 0;
-	public int bestScore = 0;
+	public int scorePlayer1 = 0;
+	public int scorePlayer2 = 0;
 	
 	private BPageType _currentPageType = BPageType.None;
 	private BPage _currentPage = null;
@@ -96,6 +96,10 @@ public class BMain : MonoBehaviour
 		
 	}
 	
+	public void ResetScore ()
+	{
+		scorePlayer1 = scorePlayer2 = 0;
+	}
 }
 
 

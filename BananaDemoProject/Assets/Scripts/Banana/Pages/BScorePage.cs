@@ -7,9 +7,7 @@ public class BScorePage : BPage
 	private FSprite _background;
 	private FButton _againButton;
 	private FLabel _scoreLabel;
-	private FLabel _bestScoreLabel;
 	private int _frameCount = 0;
-	private bool _isNewBestScore = false;
 	
 	public BScorePage()
 	{
@@ -46,29 +44,11 @@ public class BScorePage : BPage
 		
 		_againButton.SignalRelease += HandleAgainButtonRelease;
 		
-		_scoreLabel = new FLabel("Franchise", BMain.instance.score+" Bananas");
+		_scoreLabel = new FLabel("Franchise", BMain.instance.scorePlayer1 +" Bananas");
 		AddChild(_scoreLabel);
 		
 		_scoreLabel.color = new Color(1.0f,0.9f,0.2f);
 		_scoreLabel.y = 110.0f;
-		
-		if(BMain.instance.score > BMain.instance.bestScore)
-		{
-			BMain.instance.bestScore = BMain.instance.score;	
-			_isNewBestScore = true;
-		}
-		else
-		{
-			_isNewBestScore = false;	
-		}
-		
-		_bestScoreLabel = new FLabel("Franchise", "Best score: " + BMain.instance.bestScore+" Bananas");
-		AddChild(_bestScoreLabel);
-		_bestScoreLabel.scale = 0.5f;
-		_bestScoreLabel.anchorX = 1.0f;
-		_bestScoreLabel.anchorY = 0.0f;
-		_bestScoreLabel.color = new Color(1.0f,0.9f,0.2f);
-		
 		
 		
 		_scoreLabel.scale = 0.0f;
@@ -92,10 +72,7 @@ public class BScorePage : BPage
 	{
 		//this will scale the background up to fit the screen
 		//but it won't let it shrink smaller than 100%
-		_background.scale = Math.Max (Math.Max(1.0f,Futile.screen.height/_background.textureRect.height),Futile.screen.width/_background.textureRect.width);
-		 
-		_bestScoreLabel.x = Futile.screen.halfWidth - 5;
-		_bestScoreLabel.y = -Futile.screen.halfHeight + 5;
+		_background.scale = Math.Max (Math.Max(1.0f,Futile.screen.height/_background.textureRect.height),Futile.screen.width/_background.textureRect.width);		 
 	}
 
 	private void HandleAgainButtonRelease (FButton button)
@@ -109,12 +86,10 @@ public class BScorePage : BPage
 		if(_frameCount % 24 < 12) //make the score blink every 12 frames
 		{
 			_scoreLabel.color = new Color(1.0f,1.0f,0.5f);
-			if(_isNewBestScore) _bestScoreLabel.color = new Color(1.0f,1.0f,0.5f);
 		}
 		else 
 		{
 			_scoreLabel.color = new Color(1.0f,0.9f,0.2f);	
-			if(_isNewBestScore) _bestScoreLabel.color = new Color(1.0f,0.9f,0.2f);	
 		}
 		
 		_frameCount++;
