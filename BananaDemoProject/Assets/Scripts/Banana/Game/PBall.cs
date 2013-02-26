@@ -54,14 +54,10 @@ public class PBall : FSprite
 
 	public void CollidesWith (PPlayer player)
 	{
-//		if (_borderTouched == PBorder.Left && x < player.x || _borderTouched == PBorder.Right && x > player.x) {
-//			_borderTouched = PBorder.None;
-//			return;
-//		}
-			
 		moveToPaddleBorder(player);
 		
 		_velocity.x *= -1;
+		_velocity.y += player.speedY * 0.5f;
 		_borderTouched = PBorder.None;
 	}
 

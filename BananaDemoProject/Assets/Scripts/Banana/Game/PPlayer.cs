@@ -15,17 +15,22 @@ public class PPlayer : FSprite
 		_maxY = Futile.screen.halfWidth - height * anchorY;
 		_minY = -Futile.screen.halfWidth + height * anchorY;	
 	}
-	
+
 	public int score
 	{
 		get {return _score;}	
 	}
-	
+
 	public void AddScore()
 	{
 		_score++;
 	}	
-
+	
+	public float speedY
+	{
+		get { return _speedY; }
+	}
+	
 	public void Move (PInputType move)
 	{
 		switch (move) {
@@ -50,7 +55,7 @@ public class PPlayer : FSprite
 			y = _minY;
 		else
 			y += _speedY;
-		
+
 		base.Redraw(shouldForceDirty, shouldUpdateDepth);
 	}
 
