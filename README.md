@@ -15,7 +15,7 @@ ___
 ####How to open the project
 
 - Grab the project from github and put it somewhere - [For the lazy, here's a zip of the whole repo](https://github.com/luisparravicini/Pongutile/zipball/master)
-- Make sure you have Unity installed
+- Make sure you have Unity 4 installed
 - Go into PongutileDemoProject/Assets/Scenes and open PongutileDemoScene.unity
 
 ####How to make sure you're running it at the right resolution
