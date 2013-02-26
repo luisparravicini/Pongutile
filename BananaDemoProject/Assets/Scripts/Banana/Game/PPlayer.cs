@@ -5,10 +5,17 @@ public class PPlayer : FSprite
 {
 	private int _score;
 	private float _speedY;
+	private float _minY;
+	private float _maxY;
 	
 	public PPlayer () : base("Banana.png")
 	{
+		rotation = 90f;
+		_scaleY = _scaleX = 0.25f;
 		_score = 0;
+		
+		_maxY = Futile.screen.halfWidth - height * anchorY;
+		_minY = -Futile.screen.halfWidth + height * anchorY;	
 	}
 	
 	public int score
@@ -37,8 +44,14 @@ public class PPlayer : FSprite
 	}
 	
 	override public void Redraw(bool shouldForceDirty, bool shouldUpdateDepth)
-	{		
-		this.y += _speedY;
+	{
+		if (y > _maxY)
+			y = _maxY;
+		else
+		if (y < _minY)
+			y = _minY;
+		else
+			y += _speedY;
 		
 		base.Redraw(shouldForceDirty, shouldUpdateDepth);
 	}

@@ -49,8 +49,8 @@ public class BInGamePage : BPage
 		AddChild(_player1 = new PPlayer());
 		AddChild(_player2 = new PPlayer());
 		
-		_player1.x = -Futile.screen.halfWidth + 10;
-		_player2.x = Futile.screen.halfWidth - 10;
+		_player1.x = -Futile.screen.halfWidth * 0.8f;
+		_player2.x = Futile.screen.halfWidth * 0.8f;
 		
 		
 		_closeButton = new FButton("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
