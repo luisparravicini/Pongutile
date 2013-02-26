@@ -6,8 +6,6 @@ using System;
 public class BInGamePage : BPage, FMultiTouchableInterface
 {
 	
-	private FSprite _background;
-	
 	private FButton _closeButton;
 	
 	private FLabel _scoreLabel;
@@ -24,6 +22,11 @@ public class BInGamePage : BPage, FMultiTouchableInterface
 	private int _framesTillNextBanana = 0;	
 	
 	private FContainer _effectHolder;
+	
+	private PPlayer _player1;
+	private PPlayer _player2;
+	
+	private PInput _userInput;
 
 	public BInGamePage()
 	{
@@ -48,14 +51,19 @@ public class BInGamePage : BPage, FMultiTouchableInterface
 	
 	override public void Start()
 	{
+		_userInput = new PInput();
+
 		BMain.instance.score = 0;
-		
-		_background = new FSprite("JungleBlurryBG.png");
-		AddChild(_background);
 
 		//the banana container will make it easy to keep the bananas at the right depth
 		_bananaContainer = new FContainer(); 
 		AddChild(_bananaContainer); 
+		
+		AddChild(_player1 = new PPlayer());
+		AddChild(_player2 = new PPlayer());
+		
+		_player1.x = -Futile.screen.halfWidth + 10;
+		_player2.x = Futile.screen.halfWidth - 10;
 		
 		
 		_closeButton = new FButton("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
@@ -106,7 +114,6 @@ public class BInGamePage : BPage, FMultiTouchableInterface
 	{
 		//this will scale the background up to fit the screen
 		//but it won't let it shrink smaller than 100%
-		_background.scale = Math.Max (Math.Max(1.0f,Futile.screen.height/_background.textureRect.height),Futile.screen.width/_background.textureRect.width);
 		 
 		_closeButton.x = -Futile.screen.halfWidth + 30.0f;
 		_closeButton.y = -Futile.screen.halfHeight + 30.0f;
@@ -157,6 +164,11 @@ public class BInGamePage : BPage, FMultiTouchableInterface
 	
 	protected void HandleUpdate ()
 	{
+		_userInput.Update();
+		
+		_player1.Move(_userInput.player1);
+		_player2.Move(_userInput.player2);
+		
 		_secondsLeft -= Time.deltaTime;
 		
 		if(_secondsLeft <= 0)

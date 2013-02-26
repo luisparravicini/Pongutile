@@ -57,7 +57,8 @@ public class BMain : MonoBehaviour
 		
 		BSoundPlayer.PlayRegularMusic();
 		
-		GoToPage(BPageType.TitlePage);
+		//GoToPage(BPageType.TitlePage);
+		GoToPage(BPageType.InGamePage);
 	}
 
 	public void GoToPage (BPageType pageType)
