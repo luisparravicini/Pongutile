@@ -43,15 +43,13 @@ public class BMain : MonoBehaviour
 		
 		Futile.instance.Init (fparams);
 		
-		Futile.atlasManager.LoadAtlas("Atlases/BananaGameAtlas");
-		Futile.atlasManager.LoadAtlas("Atlases/PongutileGameAtlas");
-		
+		Futile.atlasManager.LoadAtlas("Atlases/PongutileGameAtlas");		
 		Futile.atlasManager.LoadFont("Franchise","FranchiseFont"+Futile.resourceSuffix+".png", "Atlases/FranchiseFont"+Futile.resourceSuffix);
 		
 		_stage = Futile.stage;
 		
-		//GoToPage(BPageType.TitlePage);
-		GoToPage(BPageType.InGamePage);
+		GoToPage(BPageType.TitlePage);
+		//GoToPage(BPageType.InGamePage);
 	}
 
 	public void GoToPage (BPageType pageType)
