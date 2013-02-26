@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class BTitlePage : BPage
+public class PTitlePage : PPage
 {
 	private int _frameCount = 0;
 	private PInput _input;
@@ -12,7 +12,7 @@ public class BTitlePage : BPage
 	private PBall _ball;
 	
 	
-	public BTitlePage()
+	public PTitlePage()
 	{
 		
 	}
@@ -35,18 +35,18 @@ public class BTitlePage : BPage
 	{
 		_input = new PInput();
 		
-		AddChild(_title = new FLabel("Franchise", "Pongutile"));
+		AddChild(_title = new FLabel("Imagine", "Pongutile"));
 		_title.scale = 1.5f;
 		_title.anchorY = 1;
 		
-		AddChild(_subtitle = new FLabel("Franchise", "pong + futile"));
+		AddChild(_subtitle = new FLabel("Imagine", "pong + futile"));
 		_subtitle.scale = 0.7f;
 		_subtitle.anchorY = 1;
 		
-		AddChild(_playLabel = new FLabel("Franchise", "space to play"));
+		AddChild(_playLabel = new FLabel("Imagine", "space to play"));
 		_playLabel.scale = 0.5f;
 		
-		BInGamePage.AddLineMiddle(this);
+		PInGamePage.AddLineMiddle(this);
 		
 		AddChild (_ball = new PBall ());
 		_ball.canGoOutOfBounds = false;
@@ -60,7 +60,7 @@ public class BTitlePage : BPage
 		_title.y = Futile.screen.halfHeight * 0.8f;
 
 		_subtitle.x = 0;
-		_subtitle.y = _title.y - _title.textRect.CloneAndMultiply(_title.scale).CloneAndOffset(_title.x, _title.y).height;
+		_subtitle.y = _title.y - _title.textRect.CloneAndMultiply(_title.scale).CloneAndOffset(_title.x, _title.y).height * 1.2f;
 		
 		_playLabel.x = 0;
 		_playLabel.y = - Futile.screen.halfHeight * 0.5f;
@@ -72,7 +72,7 @@ public class BTitlePage : BPage
 		_input.Update();
 		
 		if (_input.startPlay)
-			BMain.instance.GoToPage(BPageType.InGamePage);
+			BMain.instance.GoToPage(PPageType.InGamePage);
 	}
 
 }

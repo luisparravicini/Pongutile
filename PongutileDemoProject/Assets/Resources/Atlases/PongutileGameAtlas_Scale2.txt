@@ -1,16 +1,16 @@
 {"frames": {
 
-"FranchiseFont_Scale2.png":
+"ImagineFont_Scale2.png":
 {
-	"frame": {"x":2,"y":2,"w":500,"h":360},
+	"frame": {"x":2,"y":2,"w":256,"h":256},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":3,"y":4,"w":500,"h":360},
-	"sourceSize": {"w":512,"h":512}
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+	"sourceSize": {"w":256,"h":256}
 },
 "ball.png":
 {
-	"frame": {"x":2,"y":430,"w":16,"h":16},
+	"frame": {"x":2,"y":326,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -18,7 +18,7 @@
 },
 "middle.png":
 {
-	"frame": {"x":504,"y":2,"w":6,"h":16},
+	"frame": {"x":2,"y":344,"w":6,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":16},
@@ -26,7 +26,7 @@
 },
 "player.png":
 {
-	"frame": {"x":2,"y":364,"w":18,"h":64},
+	"frame": {"x":2,"y":260,"w":18,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":64},
@@ -39,6 +39,6 @@
 	"format": "RGBA8888",
 	"size": {"w":512,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5a6bae9067cf46331e337ce467d99453$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7d8e05c248b8f515e4998224c8b2cb2f$"
 }
 }

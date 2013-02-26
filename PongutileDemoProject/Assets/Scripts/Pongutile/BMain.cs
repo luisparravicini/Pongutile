@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum BPageType
+public enum PPageType
 {
 	None,
 	TitlePage,
@@ -17,8 +17,8 @@ public class BMain : MonoBehaviour
 	public int scorePlayer1 = 0;
 	public int scorePlayer2 = 0;
 	
-	private BPageType _currentPageType = BPageType.None;
-	private BPage _currentPage = null;
+	private PPageType _currentPageType = PPageType.None;
+	private PPage _currentPage = null;
 	
 	private FStage _stage;
 	
@@ -44,27 +44,27 @@ public class BMain : MonoBehaviour
 		Futile.instance.Init (fparams);
 		
 		Futile.atlasManager.LoadAtlas("Atlases/PongutileGameAtlas");		
-		Futile.atlasManager.LoadFont("Franchise","FranchiseFont"+Futile.resourceSuffix+".png", "Atlases/FranchiseFont"+Futile.resourceSuffix);
+		Futile.atlasManager.LoadFont("Imagine","ImagineFont"+Futile.resourceSuffix+".png", "Atlases/ImagineFont"+Futile.resourceSuffix);
 		
 		_stage = Futile.stage;
 		
-		GoToPage(BPageType.TitlePage);
+		GoToPage(PPageType.TitlePage);
 		//GoToPage(BPageType.InGamePage);
 	}
 
-	public void GoToPage (BPageType pageType)
+	public void GoToPage (PPageType pageType)
 	{
 		if(_currentPageType == pageType) return; //we're already on the same page, so don't bother doing anything
 		
-		BPage pageToCreate = null;
+		PPage pageToCreate = null;
 		
-		if(pageType == BPageType.TitlePage)
+		if(pageType == PPageType.TitlePage)
 		{
-			pageToCreate = new BTitlePage();
+			pageToCreate = new PTitlePage();
 		}
-		else if (pageType == BPageType.InGamePage)
+		else if (pageType == PPageType.InGamePage)
 		{
-			pageToCreate = new BInGamePage();
+			pageToCreate = new PInGamePage();
 		}  
 
 		

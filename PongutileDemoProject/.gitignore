@@ -1,13 +1,13 @@
 Library/
 Temp/
 Output/
-BananaDemoProject.sln
-BananaDemoProject-csharp.sln
+PongutileDemoProject.sln
+PongutileDemoProject-csharp.sln
 Assembly-CSharp.csproj
 Assembly-CSharp-vs.csproj
 Assembly-CSharp-firstpass.csproj
 Assembly-CSharp-firstpass-vs.csproj
-BananaDemoProject.userprefs
+PongutileDemoProject.userprefs
 Assembly-CSharp.pidb
 Assembly-CSharp-firstpass.pidb
 *.DS_Store

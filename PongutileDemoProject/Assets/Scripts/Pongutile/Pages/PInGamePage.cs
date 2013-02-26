@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class BInGamePage : BPage
+public class PInGamePage : PPage
 {	
 	private PBall _ball;
 	private PInput _userInput;
@@ -16,7 +16,7 @@ public class BInGamePage : BPage
 	private PPlayerAI _player1AI;
 	private PPlayerAI _player2AI;
 
-	public BInGamePage ()
+	public PInGamePage ()
 	{
 		
 	}
@@ -53,13 +53,13 @@ public class BInGamePage : BPage
 		_player1AI = new PPlayerAI(_player1, _ball);
 		_player2AI = new PPlayerAI(_player2, _ball);
 		
-		BInGamePage.AddLineMiddle (this);
+		PInGamePage.AddLineMiddle (this);
 		
-		_score2Label = new FLabel ("Franchise", BMain.instance.scorePlayer2.ToString ());
+		_score2Label = new FLabel ("Imagine", BMain.instance.scorePlayer2.ToString ());
 		_score2Label.anchorX = 0.0f;
 		_score2Label.anchorY = 1.0f;
 
-		_score1Label = new FLabel ("Franchise", BMain.instance.scorePlayer1.ToString ());
+		_score1Label = new FLabel ("Imagine", BMain.instance.scorePlayer1.ToString ());
 		_score1Label.anchorX = 1.0f;
 		_score1Label.anchorY = 1.0f;
 		
@@ -67,11 +67,11 @@ public class BInGamePage : BPage
 		AddChild (_score1Label);
 		
 		// TODO player 1 keys are defined in PInput. The code should ask PInput and not hardcode it here
-		AddChild (_player1Hint = new FLabel ("Franchise", "Q and A to play"));
+		AddChild (_player1Hint = new FLabel ("Imagine", "Q and A to play"));
 		_player1Hint.scale = 0.4f;
 
 		// TODO player 2 keys are defined in PInput. The code should ask PInput and not hardcode it here
-		AddChild (_player2Hint = new FLabel ("Franchise", "P and L to play"));
+		AddChild (_player2Hint = new FLabel ("Imagine", "P and L to play"));
 		_player2Hint.scale = 0.4f;
 
 		_player1Hint.alpha = 0.15f;
@@ -153,7 +153,7 @@ public class BInGamePage : BPage
 		_player2AI.Update();
 		
 		if (_userInput.goBack)
-			BMain.instance.GoToPage (BPageType.TitlePage);
+			BMain.instance.GoToPage (PPageType.TitlePage);
 	}
 
 	protected void CheckCollisions ()
