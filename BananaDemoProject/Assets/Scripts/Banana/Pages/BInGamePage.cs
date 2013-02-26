@@ -5,14 +5,16 @@ using System;
 
 public class BInGamePage : BPage
 {	
+	private PBall _ball;
+	private PInput _userInput;
 	private FLabel _score2Label;
 	private FLabel _score1Label;
 	private PPlayer _player1;
 	private PPlayer _player2;
-	private PBall _ball;
-	private PInput _userInput;
 	private FLabel _player1Hint;
 	private FLabel _player2Hint;
+	private PPlayerAI _player1AI;
+	private PPlayerAI _player2AI;
 
 	public BInGamePage ()
 	{
@@ -48,12 +50,15 @@ public class BInGamePage : BPage
 		AddChild (_ball = new PBall ());
 		ThrowNewBall ();
 		
+		_player1AI = new PPlayerAI(_player1, _ball);
+		_player2AI = new PPlayerAI(_player2, _ball);
+		
 		BInGamePage.AddLineMiddle (this);
 		
 		_score2Label = new FLabel ("Franchise", BMain.instance.scorePlayer2.ToString ());
 		_score2Label.anchorX = 0.0f;
 		_score2Label.anchorY = 1.0f;
-		
+
 		_score1Label = new FLabel ("Franchise", BMain.instance.scorePlayer1.ToString ());
 		_score1Label.anchorX = 1.0f;
 		_score1Label.anchorY = 1.0f;
@@ -70,12 +75,14 @@ public class BInGamePage : BPage
 		_player2Hint.scale = 0.4f;
 
 		_player1Hint.alpha = 0.15f;
+		//TODO should remove it instead of setting alpha = 0
 		Go.to (_player1Hint, 0.6f, new TweenConfig ().
-			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong));
+			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong).floatProp("alpha", 0));
 		
 		_player2Hint.alpha = 0.15f;
+		//TODO should remove it instead of setting alpha = 0
 		Go.to (_player2Hint, 0.6f, new TweenConfig ().
-			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong));
+			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong).floatProp("alpha", 0));
 
 		HandleResize (true); //force resize to position everything at the start
 	}
@@ -127,8 +134,17 @@ public class BInGamePage : BPage
 	protected void UpdateInput ()
 	{
 		_userInput.Update ();
+		
+		if (_userInput.player1 != PInputType.None)
+			_player1AI.Disable();
+		
+		if (_userInput.player2 != PInputType.None)
+			_player2AI.Disable();
+		
 		_player1.Move (_userInput.player1);
 		_player2.Move (_userInput.player2);
+		_player1AI.Update();
+		_player2AI.Update();
 		
 		if (_userInput.goBack)
 			BMain.instance.GoToPage (BPageType.TitlePage);
