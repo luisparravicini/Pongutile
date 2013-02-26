@@ -116,24 +116,6 @@ public class BInGamePage : BPage
 	{
 		BMain.instance.GoToPage(BPageType.TitlePage);
 	}
-	
-	public void HandleGotBanana(BBanana banana)
-	{
-		CreateBananaExplodeEffect(banana);
-
-		BMain.instance.score++;
-		
-		if(BMain.instance.score == 1)
-		{
-			_scoreLabel.text = "1 Banana";	
-		}
-		else 
-		{
-			_scoreLabel.text = BMain.instance.score+" Bananas";	
-		}
-		
-		BSoundPlayer.PlayBananaSound();
-	}
 
 	protected void HandleUpdate ()
 	{
@@ -159,27 +141,6 @@ public class BInGamePage : BPage
 		}
 		
 		_frameCount++;
-	}
-		
-	private void CreateBananaExplodeEffect(BBanana banana)
-	{
-		//we can't just get its x and y, because they might be transformed somehow
-		Vector2 bananaPos = _effectHolder.LocalToLocal(banana,Vector2.zero);
-		
-		FSprite explodeSprite = new FSprite("Banana.png");
-		_effectHolder.AddChild(explodeSprite);
-		explodeSprite.shader = FShader.Additive;
-		explodeSprite.x = bananaPos.x;
-		explodeSprite.y = bananaPos.y;
-		explodeSprite.rotation = banana.rotation;
-		
-		Go.to (explodeSprite, 0.3f, new TweenConfig().floatProp("scale",1.3f).floatProp("alpha",0.0f).onComplete(HandleExplodeSpriteComplete));
-	}
-	
-	private static void HandleExplodeSpriteComplete (AbstractTween tween)
-	{
-		FSprite explodeSprite = (tween as Tween).target as FSprite;
-		explodeSprite.RemoveFromContainer();
 	}
 }
 
