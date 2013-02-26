@@ -49,7 +49,7 @@ public class BMain : MonoBehaviour
 		_stage = Futile.stage;
 		
 		GoToPage(PPageType.TitlePage);
-		//GoToPage(BPageType.InGamePage);
+		//GoToPage(PPageType.InGamePage);
 	}
 
 	public void GoToPage (PPageType pageType)
