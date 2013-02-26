@@ -42,7 +42,7 @@ public class PPlayer : FSprite
 			break;
 		}
 	}
-	
+
 	override public void Redraw(bool shouldForceDirty, bool shouldUpdateDepth)
 	{
 		if (y > _maxY)
