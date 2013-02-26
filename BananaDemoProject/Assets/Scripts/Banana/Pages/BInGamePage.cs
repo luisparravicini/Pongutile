@@ -11,10 +11,6 @@ public class BInGamePage : BPage
 	private FLabel _score2Label;
 	private FLabel _score1Label;
 	
-	private int _frameCount = 0;
-	
-	private FContainer _effectHolder;
-	
 	private PPlayer _player1;
 	private PPlayer _player2;
 	
@@ -71,9 +67,6 @@ public class BInGamePage : BPage
 		AddChild(_score2Label);
 		AddChild(_score1Label);
 		
-		_effectHolder = new FContainer();
-		AddChild (_effectHolder);
-		
 		_score2Label.alpha = 0.0f;
 		Go.to(_score2Label, 0.5f, new TweenConfig().
 			setDelay(0.0f).
@@ -120,8 +113,6 @@ public class BInGamePage : BPage
 				
 		_score1Label.text = BMain.instance.scorePlayer1.ToString();
 		_score2Label.text = BMain.instance.scorePlayer2.ToString();
-		
-		_frameCount++;
 	}
 }
 
