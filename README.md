@@ -1,6 +1,8 @@
 #Pongutile
 
-A little test using Unity + Futile. This is my first project with Unity and Futile. The code is based on Matt Rix's BananaDemo
+A little test using Unity + Futile. As this is my first project with Unity (and also Futile) expect a fair amount of antipatterns, bad ways of doing things and all sorts of kludges.
+
+The code is based on Matt Rix's BananaDemo
 
 ___
 
