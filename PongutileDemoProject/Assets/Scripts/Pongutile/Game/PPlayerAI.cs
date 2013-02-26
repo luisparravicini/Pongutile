@@ -43,7 +43,7 @@ public class PPlayerAI
 		if (nextMove > 0)
 			return;
 
-		nextMove = 0.1f;
+		nextMove = 0.06f;
 		
 		float distanceY = PUtil.UniDistance(_lastBallY, _ball.y);
 		if (distanceY < 0.5f)

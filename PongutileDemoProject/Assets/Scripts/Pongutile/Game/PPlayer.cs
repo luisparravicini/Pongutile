@@ -5,29 +5,22 @@ public class PPlayer : FSprite
 {
 	private int _score;
 	private float _speedY;
-	private float _minY;
-	private float _maxY;
 	
 	public PPlayer () : base("player.png")
 	{
 		_score = 0;
-		
-		_maxY = Futile.screen.halfWidth - height;
-		_minY = -Futile.screen.halfWidth + height;	
 	}
 
-	public int score
-	{
+	public int score {
 		get { return _score; }	
 	}
 
-	public void AddScore()
+	public void AddScore ()
 	{
 		_score++;
-	}	
+	}
 	
-	public float speedY
-	{
+	public float speedY {
 		get { return _speedY; }
 	}
 	
@@ -46,17 +39,15 @@ public class PPlayer : FSprite
 		}
 	}
 
-	override public void Redraw(bool shouldForceDirty, bool shouldUpdateDepth)
+	override public void Redraw (bool shouldForceDirty, bool shouldUpdateDepth)
 	{
-		if (y > _maxY)
-			y = _maxY;
-		else
-		if (y < _minY)
-			y = _minY;
-		else
-			y += _speedY;
+		float limitY = Futile.screen.halfHeight - height * anchorY;
 
-		base.Redraw(shouldForceDirty, shouldUpdateDepth);
+		y += _speedY;
+		if (Math.Abs (y) > limitY)
+			y = limitY * (y < 0 ? -1 : 1);
+
+		base.Redraw (shouldForceDirty, shouldUpdateDepth);
 	}
 
 }
