@@ -96,9 +96,6 @@ public class BInGamePage : BPage
 	
 	protected void HandleResize(bool wasOrientationChange)
 	{
-		//this will scale the background up to fit the screen
-		//but it won't let it shrink smaller than 100%
-		 
 		_closeButton.x = -Futile.screen.halfWidth + 30.0f;
 		_closeButton.y = -Futile.screen.halfHeight + 30.0f;
 		
