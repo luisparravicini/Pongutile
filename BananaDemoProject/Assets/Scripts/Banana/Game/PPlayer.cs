@@ -12,13 +12,13 @@ public class PPlayer : FSprite
 	{
 		_score = 0;
 		
-		_maxY = Futile.screen.halfWidth - height * anchorY;
-		_minY = -Futile.screen.halfWidth + height * anchorY;	
+		_maxY = Futile.screen.halfWidth - height;
+		_minY = -Futile.screen.halfWidth + height;	
 	}
 
 	public int score
 	{
-		get {return _score;}	
+		get { return _score; }	
 	}
 
 	public void AddScore()

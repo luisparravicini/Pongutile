@@ -141,7 +141,6 @@ public class BInGamePage : BPage
 		
 		if (_userInput.player1 != PInputType.None)
 			_player1AI.Disable();
-		
 		if (_userInput.player2 != PInputType.None)
 			_player2AI.Disable();
 		
