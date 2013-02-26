@@ -1,0 +1,36 @@
+{"frames": {
+
+"ball.png":
+{
+	"frame": {"x":2,"y":68,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"middle.png":
+{
+	"frame": {"x":22,"y":2,"w":6,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":16},
+	"sourceSize": {"w":6,"h":16}
+},
+"player.png":
+{
+	"frame": {"x":2,"y":2,"w":18,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":64},
+	"sourceSize": {"w":18,"h":64}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "PongutileGameAtlas_Scale2.png",
+	"format": "RGBA8888",
+	"size": {"w":32,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:4b37184630d5889e100282f7bad11dab$"
+}
+}

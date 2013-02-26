@@ -8,10 +8,8 @@ public class PPlayer : FSprite
 	private float _minY;
 	private float _maxY;
 	
-	public PPlayer () : base("Banana.png")
+	public PPlayer () : base("player.png")
 	{
-		rotation = 90f;
-		_scaleY = _scaleX = 0.25f;
 		_score = 0;
 		
 		_maxY = Futile.screen.halfWidth - height * anchorY;

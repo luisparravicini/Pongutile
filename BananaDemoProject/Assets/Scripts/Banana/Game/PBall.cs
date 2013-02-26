@@ -14,10 +14,8 @@ public class PBall : FSprite
 	private Vector2 _velocity;
 	private PBorder _borderTouched;
 	
-	public PBall () : base("Banana.png")
+	public PBall () : base("ball.png")
 	{
-		_scaleY = 0.25f;
-		_scaleX = 0.1f;
 		Reset();		
 	}
 	
@@ -54,6 +52,29 @@ public class PBall : FSprite
 		base.Redraw (shouldForceDirty, shouldUpdateDepth);
 	}
 
+	public void CollidesWith (PPlayer player)
+	{
+//		if (_borderTouched == PBorder.Left && x < player.x || _borderTouched == PBorder.Right && x > player.x) {
+//			_borderTouched = PBorder.None;
+//			return;
+//		}
+			
+		moveToPaddleBorder(player);
+		
+		_velocity.x *= -1;
+		_borderTouched = PBorder.None;
+	}
+
+	public void moveToPaddleBorder (PPlayer player)
+	{
+		x = player.x;
+		float delta = player.width * player.anchorX + width*anchorX + 1;
+		if (_borderTouched == PBorder.Left)
+			x += delta;
+		else
+			x -= delta;
+
+	}
 }
 
 

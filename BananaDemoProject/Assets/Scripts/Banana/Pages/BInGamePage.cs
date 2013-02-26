@@ -57,12 +57,10 @@ public class BInGamePage : BPage
 		_score2Label = new FLabel ("Franchise", BMain.instance.scorePlayer2.ToString ());
 		_score2Label.anchorX = 0.0f;
 		_score2Label.anchorY = 1.0f;
-		_score2Label.color = new Color (1.0f, 0.90f, 0.0f);
 		
 		_score1Label = new FLabel ("Franchise", BMain.instance.scorePlayer1.ToString ());
 		_score1Label.anchorX = 1.0f;
 		_score1Label.anchorY = 1.0f;
-		_score1Label.color = new Color (1.0f, 1.0f, 1.0f);
 		
 		AddChild (_score2Label);
 		AddChild (_score1Label);
@@ -122,6 +120,17 @@ public class BInGamePage : BPage
 				BMain.instance.scorePlayer1++;
 			
 			ThrowNewBall ();
+		}
+		
+		Rect ballRect = _ball.textureRect.CloneAndOffset(_ball.x, _ball.y);
+		Rect playerRect = _player1.textureRect.CloneAndOffset(_player1.x, _player1.y);
+
+		if (playerRect.CheckIntersect(ballRect))
+			_ball.CollidesWith(_player1);
+		else {
+			playerRect =_player2.textureRect.CloneAndOffset(_player2.x, _player2.y);
+		if (playerRect.CheckIntersect(ballRect))
+			_ball.CollidesWith(_player2);
 		}
 				
 		_score1Label.text = BMain.instance.scorePlayer1.ToString ();
