@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System;
 
 public class BInGamePage : BPage
-{
-	
-	private FButton _closeButton;
+{	
 	private FLabel _score2Label;
 	private FLabel _score1Label;
 	private PPlayer _player1;
 	private PPlayer _player2;
 	private PBall _ball;
 	private PInput _userInput;
+	private FLabel _player1Hint;
+	private FLabel _player2Hint;
 
 	public BInGamePage ()
 	{
@@ -48,13 +48,7 @@ public class BInGamePage : BPage
 		AddChild (_ball = new PBall ());
 		ThrowNewBall ();
 		
-		BInGamePage.AdLineMiddle (this);
-		
-		_closeButton = new FButton ("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
-		AddChild (_closeButton);
-		
-		
-		_closeButton.SignalRelease += HandleCloseButtonRelease;
+		BInGamePage.AddLineMiddle (this);
 		
 		_score2Label = new FLabel ("Franchise", BMain.instance.scorePlayer2.ToString ());
 		_score2Label.anchorX = 0.0f;
@@ -67,27 +61,26 @@ public class BInGamePage : BPage
 		AddChild (_score2Label);
 		AddChild (_score1Label);
 		
-		_score2Label.alpha = 0.0f;
-		Go.to (_score2Label, 0.5f, new TweenConfig ().
-			setDelay (0.0f).
-			floatProp ("alpha", 1.0f));
+		// TODO player 1 keys are defined in PInput. The code should ask PInput and not hardcode it here
+		AddChild (_player1Hint = new FLabel ("Franchise", "Q and A to play"));
+		_player1Hint.scale = 0.4f;
+
+		// TODO player 2 keys are defined in PInput. The code should ask PInput and not hardcode it here
+		AddChild (_player2Hint = new FLabel ("Franchise", "P and L to play"));
+		_player2Hint.scale = 0.4f;
+
+		_player1Hint.alpha = 0.15f;
+		Go.to (_player1Hint, 0.6f, new TweenConfig ().
+			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong));
 		
-		_score1Label.alpha = 0.0f;
-		Go.to (_score1Label, 0.5f, new TweenConfig ().
-			setDelay (0.0f).
-			floatProp ("alpha", 1.0f).
-			setEaseType (EaseType.BackOut));
-		
-		_closeButton.scale = 0.0f;
-		Go.to (_closeButton, 0.5f, new TweenConfig ().
-			setDelay (0.0f).
-			floatProp ("scale", 1.0f).
-			setEaseType (EaseType.BackOut));
-		
+		_player2Hint.alpha = 0.15f;
+		Go.to (_player2Hint, 0.6f, new TweenConfig ().
+			floatProp ("alpha", 1.0f).setIterations (10, LoopType.PingPong));
+
 		HandleResize (true); //force resize to position everything at the start
 	}
 
-	public static void AdLineMiddle (FContainer container)
+	public static void AddLineMiddle (FContainer container)
 	{
 		FSprite middle = new FSprite ("middle.png");
 		float y = Futile.screen.halfHeight - middle.height;
@@ -110,19 +103,17 @@ public class BInGamePage : BPage
 	
 	protected void HandleResize (bool wasOrientationChange)
 	{
-		_closeButton.x = -Futile.screen.halfWidth + 30.0f;
-		_closeButton.y = -Futile.screen.halfHeight + 30.0f;
-		
 		_score2Label.x = -Futile.screen.halfWidth * 0.3f;
 		_score2Label.y = Futile.screen.halfHeight - 10.0f;
 		
 		_score1Label.x = Futile.screen.halfWidth * 0.3f;
 		_score1Label.y = Futile.screen.halfHeight - 10.0f;
-	}
+		
+		_player1Hint.x = -Futile.screen.halfWidth * 0.5f;
+		_player1Hint.y = 0;
 
-	private void HandleCloseButtonRelease (FButton button)
-	{
-		BMain.instance.GoToPage (BPageType.TitlePage);
+		_player2Hint.x = Futile.screen.halfWidth * 0.5f;
+		_player2Hint.y = 0;
 	}
 
 	protected void HandleUpdate ()
@@ -138,7 +129,9 @@ public class BInGamePage : BPage
 		_userInput.Update ();
 		_player1.Move (_userInput.player1);
 		_player2.Move (_userInput.player2);
-
+		
+		if (_userInput.goBack)
+			BMain.instance.GoToPage (BPageType.TitlePage);
 	}
 
 	protected void CheckCollisions ()
@@ -165,14 +158,12 @@ public class BInGamePage : BPage
 			
 			ThrowNewBall ();
 		}
-
 	}
 
 	protected void UpdateScores ()
 	{
 		_score1Label.text = BMain.instance.scorePlayer1.ToString ();
 		_score2Label.text = BMain.instance.scorePlayer2.ToString ();
-
 	}
 }
 

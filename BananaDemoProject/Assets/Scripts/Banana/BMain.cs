@@ -50,10 +50,8 @@ public class BMain : MonoBehaviour
 		
 		_stage = Futile.stage;
 		
-		BSoundPlayer.PlayRegularMusic();
-		
-		GoToPage(BPageType.TitlePage);
-		//GoToPage(BPageType.InGamePage);
+		//GoToPage(BPageType.TitlePage);
+		GoToPage(BPageType.InGamePage);
 	}
 
 	public void GoToPage (BPageType pageType)

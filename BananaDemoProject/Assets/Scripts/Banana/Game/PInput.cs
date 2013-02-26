@@ -14,11 +14,17 @@ public class PInput
 	private PInputType _player1Moves;
 	private PInputType _player2Moves;
 	private bool _startPlay;
+	private bool _goBack;
 	
 	public PInput ()
 	{
 	}
-	
+
+		public bool goBack
+	{
+		get { return _goBack; }
+	}
+
 	public bool startPlay
 	{
 		get { return _startPlay; }
@@ -40,6 +46,7 @@ public class PInput
 		_player2Moves = UserMoves(KeyCode.P, KeyCode.L);
 
 		_startPlay = Input.GetKey(KeyCode.Space);
+		_goBack = Input.GetKey(KeyCode.Escape);
 	}
 
 	public PInputType UserMoves(KeyCode up, KeyCode down)

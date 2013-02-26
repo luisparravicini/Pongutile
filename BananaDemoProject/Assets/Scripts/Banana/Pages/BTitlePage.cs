@@ -46,7 +46,7 @@ public class BTitlePage : BPage
 		AddChild(_playLabel = new FLabel("Franchise", "space to play"));
 		_playLabel.scale = 0.5f;
 		
-		BInGamePage.AdLineMiddle(this);
+		BInGamePage.AddLineMiddle(this);
 		
 		AddChild (_ball = new PBall ());
 		_ball.canGoOutOfBounds = false;

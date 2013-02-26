@@ -15,10 +15,5 @@ public class BSoundPlayer
 		FSoundManager.PlayMusic("VictorySound", 0.2f);
 	}
 	
-	static public void PlayRegularMusic()
-	{
-		FSoundManager.PlayMusic("Music", 0.3f);
-	}
-	
 }
 
