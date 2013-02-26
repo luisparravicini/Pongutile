@@ -48,16 +48,7 @@ public class BInGamePage : BPage
 		AddChild (_ball = new PBall ());
 		ThrowNewBall ();
 		
-		FSprite middle = new FSprite("middle.png");
-		float y = Futile.screen.halfHeight - middle.height;
-		while (y > -Futile.screen.halfHeight + middle.height) {
-			middle = new FSprite("middle.png");
-			middle.x = 0;
-			middle.y = y;
-			AddChild(middle);
-			
-			y -= middle.height * 1.5f;
-		}
+		BInGamePage.AdLineMiddle (this);
 		
 		_closeButton = new FButton ("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
 		AddChild (_closeButton);
@@ -95,12 +86,26 @@ public class BInGamePage : BPage
 		
 		HandleResize (true); //force resize to position everything at the start
 	}
+
+	public static void AdLineMiddle (FContainer container)
+	{
+		FSprite middle = new FSprite ("middle.png");
+		float y = Futile.screen.halfHeight - middle.height;
+		while (y > -Futile.screen.halfHeight + middle.height) {
+			middle = new FSprite ("middle.png");
+			middle.x = 0;
+			middle.y = y;
+			container.AddChild (middle);
+			
+			y -= middle.height * 1.5f;
+		}
+	}
 	
 	protected void ThrowNewBall ()
 	{
 		_ball.Reset ();
-		_ball.x = _ball.width * 1.5f * PUtil.OneOrMinusOne();
-		_ball.y = RXRandom.Range (0, Futile.screen.halfHeight - _ball.height) * PUtil.OneOrMinusOne();
+		_ball.x = _ball.width * 1.5f * PUtil.OneOrMinusOne ();
+		_ball.y = RXRandom.Range (0, Futile.screen.halfHeight - _ball.height) * PUtil.OneOrMinusOne ();
 	}
 	
 	protected void HandleResize (bool wasOrientationChange)
@@ -123,7 +128,35 @@ public class BInGamePage : BPage
 	protected void HandleUpdate ()
 	{
 		UpdateInput ();
-		
+		CheckCollisions ();
+		CheckBallOutOfBounds ();		
+		UpdateScores ();
+	}
+
+	protected void UpdateInput ()
+	{
+		_userInput.Update ();
+		_player1.Move (_userInput.player1);
+		_player2.Move (_userInput.player2);
+
+	}
+
+	protected void CheckCollisions ()
+	{
+		Rect ballRect = _ball.textureRect.CloneAndOffset (_ball.x, _ball.y);
+		Rect playerRect = _player1.textureRect.CloneAndOffset (_player1.x, _player1.y);
+
+		if (playerRect.CheckIntersect (ballRect))
+			_ball.CollidesWith (_player1);
+		else {
+			playerRect = _player2.textureRect.CloneAndOffset (_player2.x, _player2.y);
+			if (playerRect.CheckIntersect (ballRect))
+				_ball.CollidesWith (_player2);
+		}
+	}
+
+	protected void CheckBallOutOfBounds ()
+	{
 		if (_ball.ReachedBorder ()) {
 			if (_ball.borderReached == PBorder.Left)
 				BMain.instance.scorePlayer2++;
@@ -132,27 +165,13 @@ public class BInGamePage : BPage
 			
 			ThrowNewBall ();
 		}
-		
-		Rect ballRect = _ball.textureRect.CloneAndOffset(_ball.x, _ball.y);
-		Rect playerRect = _player1.textureRect.CloneAndOffset(_player1.x, _player1.y);
 
-		if (playerRect.CheckIntersect(ballRect))
-			_ball.CollidesWith(_player1);
-		else {
-			playerRect =_player2.textureRect.CloneAndOffset(_player2.x, _player2.y);
-		if (playerRect.CheckIntersect(ballRect))
-			_ball.CollidesWith(_player2);
-		}
-				
-		_score1Label.text = BMain.instance.scorePlayer1.ToString ();
-		_score2Label.text = BMain.instance.scorePlayer2.ToString ();
 	}
 
-	protected void UpdateInput ()
+	protected void UpdateScores ()
 	{
-		_userInput.Update ();
-		_player1.Move (_userInput.player1);
-		_player2.Move (_userInput.player2);
+		_score1Label.text = BMain.instance.scorePlayer1.ToString ();
+		_score2Label.text = BMain.instance.scorePlayer2.ToString ();
 
 	}
 }

@@ -13,9 +13,15 @@ public class PInput
 {
 	private PInputType _player1Moves;
 	private PInputType _player2Moves;
+	private bool _startPlay;
 	
 	public PInput ()
 	{
+	}
+	
+	public bool startPlay
+	{
+		get { return _startPlay; }
 	}
 
 	public PInputType player1
@@ -32,6 +38,8 @@ public class PInput
 	{
 		_player1Moves = UserMoves(KeyCode.Q, KeyCode.A);
 		_player2Moves = UserMoves(KeyCode.P, KeyCode.L);
+
+		_startPlay = Input.GetKey(KeyCode.Space);
 	}
 
 	public PInputType UserMoves(KeyCode up, KeyCode down)

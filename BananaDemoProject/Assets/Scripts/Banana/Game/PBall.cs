@@ -13,10 +13,12 @@ public class PBall : FSprite
 {
 	private Vector2 _velocity;
 	private PBorder _borderTouched;
+	public bool canGoOutOfBounds;
 	
 	public PBall () : base("ball.png")
 	{
-		Reset();		
+		canGoOutOfBounds = true;
+		Reset();
 	}
 	
 	public PBorder borderReached
@@ -39,9 +41,11 @@ public class PBall : FSprite
 		
 	override public void Redraw (bool shouldForceDirty, bool shouldUpdateDepth)
 	{
-		if (Math.Abs (x) > Futile.screen.halfWidth)
+		if (canGoOutOfBounds && Math.Abs (x) > Futile.screen.halfWidth)
 			_borderTouched = (x < 0 ? PBorder.Left : PBorder.Right);
 		else {
+			if (Math.Abs (x) > Futile.screen.halfWidth)
+				_velocity.x *= -1;
 			if (Math.Abs (y) > Futile.screen.halfHeight)
 				_velocity.y *= -1;
 

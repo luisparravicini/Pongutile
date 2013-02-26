@@ -4,17 +4,19 @@ using System;
 
 public class BTitlePage : BPage
 {
-	private FSprite _background;
-	private FContainer _logoHolder;
-	private FSprite _logo;
-	private FButton _startButton;
 	private int _frameCount = 0;
+	private PInput _input;
+	private FLabel _title;
+	private FLabel _subtitle;
+	private FLabel _playLabel;
+	private PBall _ball;
 	
 	
 	public BTitlePage()
 	{
 		
 	}
+
 	override public void HandleAddedToStage()
 	{
 		Futile.instance.SignalUpdate += HandleUpdate;
@@ -29,75 +31,48 @@ public class BTitlePage : BPage
 		base.HandleRemovedFromStage();	
 	}
 	
-	
 	override public void Start()
 	{
-		_background = new FSprite("JungleClearBG.png");
-		AddChild(_background);
+		_input = new PInput();
 		
-		//this will scale the background up to fit the screen
-		//but it won't let it shrink smaller than 100%
+		AddChild(_title = new FLabel("Franchise", "Pongutile"));
+		_title.scale = 1.5f;
+		_title.anchorY = 1;
 		
-		_logoHolder = new FContainer();
+		AddChild(_subtitle = new FLabel("Franchise", "pong + futile"));
+		_subtitle.scale = 0.7f;
+		_subtitle.anchorY = 1;
 		
-		AddChild (_logoHolder);
+		AddChild(_playLabel = new FLabel("Franchise", "space to play"));
+		_playLabel.scale = 0.5f;
+		
+		BInGamePage.AdLineMiddle(this);
+		
+		AddChild (_ball = new PBall ());
+		_ball.canGoOutOfBounds = false;
 
-		_logo = new FSprite("MainLogo.png");
-		
-		_logoHolder.AddChild(_logo);
-		
-		_startButton = new FButton("YellowButton_normal.png", "YellowButton_over.png", "ClickSound");
-		_startButton.AddLabel("Franchise","START",new Color(0.45f,0.25f,0.0f,1.0f));
-		
-		AddChild(_startButton);
-
-		_startButton.SignalRelease += HandleStartButtonRelease;
-		
-		_logoHolder.scale = 0.0f;
-		
-		Go.to(_logoHolder, 0.5f, new TweenConfig().
-			setDelay(0.1f).
-			floatProp("scale",1.0f).
-			setEaseType(EaseType.BackOut));
-		
-		
-		_startButton.scale = 0.0f;
-		
-		Go.to(_startButton, 0.5f, new TweenConfig().
-			setDelay(0.3f).
-			floatProp("scale",1.0f).
-			setEaseType(EaseType.BackOut));
-		
 		HandleResize(true); //force resize to position everything at the start
 	}
 	
 	protected void HandleResize(bool wasOrientationChange)
 	{
-		//this will scale the background up to fit the screen
-		//but it won't let it shrink smaller than 100%
-		_background.scale = Math.Max (1.0f,Math.Max (Futile.screen.height/_background.textureRect.height,Futile.screen.width/_background.textureRect.width));
+		_title.x = 0;
+		_title.y = Futile.screen.halfHeight * 0.8f;
+
+		_subtitle.x = 0;
+		_subtitle.y = _title.y - _title.textRect.CloneAndMultiply(_title.scale).CloneAndOffset(_title.x, _title.y).height;
 		
-		_logoHolder.x = 0.0f;
-		_logoHolder.y = 15.0f;
-		
-		_startButton.x = Futile.screen.halfWidth-75.0f;
-		_startButton.y = -Futile.screen.halfHeight+35.0f;
-		
-		//scale the logo so it fits on the main screen 
-		_logo.scale = Math.Min(1.0f,Futile.screen.width/_logo.textureRect.width);
-		
+		_playLabel.x = 0;
+		_playLabel.y = - Futile.screen.halfHeight * 0.5f;
 	}
 
-	private void HandleStartButtonRelease (FButton button)
-	{
-		BMain.instance.GoToPage(BPageType.InGamePage);
-	}
-	
 	protected void HandleUpdate ()
 	{
-		_logo.rotation = -5.0f +  RXMath.PingPong(_frameCount, 300) * 10.0f;
-		
 		_frameCount++;
+		_input.Update();
+		
+		if (_input.startPlay)
+			BMain.instance.GoToPage(BPageType.InGamePage);
 	}
 
 }

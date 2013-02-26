@@ -8,7 +8,6 @@ public enum BPageType
 	None,
 	TitlePage,
 	InGamePage,
-	ScorePage
 }
 
 public class BMain : MonoBehaviour
@@ -55,8 +54,8 @@ public class BMain : MonoBehaviour
 		
 		BSoundPlayer.PlayRegularMusic();
 		
-		//GoToPage(BPageType.TitlePage);
-		GoToPage(BPageType.InGamePage);
+		GoToPage(BPageType.TitlePage);
+		//GoToPage(BPageType.InGamePage);
 	}
 
 	public void GoToPage (BPageType pageType)
@@ -73,10 +72,7 @@ public class BMain : MonoBehaviour
 		{
 			pageToCreate = new BInGamePage();
 		}  
-		else if (pageType == BPageType.ScorePage)
-		{
-			pageToCreate = new BScorePage();
-		}
+
 		
 		if(pageToCreate != null) //destroy the old page and create a new one
 		{
