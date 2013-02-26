@@ -141,8 +141,11 @@ public class BInGamePage : BPage
 		if (_userInput.player2 != PInputType.None)
 			_player2AI.Disable();
 		
-		_player1.Move (_userInput.player1);
-		_player2.Move (_userInput.player2);
+		if (_player1AI.IsDisabled())
+			_player1.Move (_userInput.player1);
+		if (_player2AI.IsDisabled())
+			_player2.Move (_userInput.player2);
+		
 		_player1AI.Update();
 		_player2AI.Update();
 		
@@ -153,21 +156,21 @@ public class BInGamePage : BPage
 	protected void CheckCollisions ()
 	{
 		Rect ballRect = _ball.textureRect.CloneAndOffset (_ball.x, _ball.y);
+		
 		Rect playerRect = _player1.textureRect.CloneAndOffset (_player1.x, _player1.y);
-
 		if (playerRect.CheckIntersect (ballRect))
-			_ball.CollidesWith (_player1);
+			_ball.CollidesWith (_player1, PSide.Left);
 		else {
 			playerRect = _player2.textureRect.CloneAndOffset (_player2.x, _player2.y);
 			if (playerRect.CheckIntersect (ballRect))
-				_ball.CollidesWith (_player2);
+				_ball.CollidesWith (_player2, PSide.Right);
 		}
 	}
 
 	protected void CheckBallOutOfBounds ()
 	{
 		if (_ball.ReachedBorder ()) {
-			if (_ball.borderReached == PBorder.Left)
+			if (_ball.borderReached == PSide.Left)
 				BMain.instance.scorePlayer2++;
 			else
 				BMain.instance.scorePlayer1++;

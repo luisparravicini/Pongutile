@@ -11,12 +11,15 @@ public class PPlayerAI
 	private PPlayer _player;
 	private PBall _ball;
 	private bool _disabled;
+	private float nextMove;
+	private PInputType currentMove;
 	
 	public PPlayerAI (PPlayer player, PBall ball)
 	{
 		_player = player;
 		_ball = ball;
 		_disabled = false;
+		nextMove = 0;
 	}
 
 	public void Disable ()
@@ -24,22 +27,33 @@ public class PPlayerAI
 		_disabled = true;
 	}
 	
+	public bool IsDisabled ()
+	{
+		return _disabled;
+	}
+	
 	public void Update ()
 	{
 		if (_disabled)
 			return;
 	
-		float delta = _player.height * 0.2f;
+		nextMove -= Time.deltaTime;
+		if (nextMove > 0)
+			return;
+
+		nextMove = 0.1f;
+
+		float delta = _player.height * 0.7f;
 		
-		if (Math.Abs(Math.Abs(_player.y) - Math.Abs(_ball.y)) < delta)
-			_player.Move(PInputType.None);
-		else
-		if (_player.y < _ball.y)
-			_player.Move (PInputType.Up);
+		if (Math.Abs (Math.Abs (_player.y) - Math.Abs (_ball.y)) < delta)
+			currentMove = PInputType.None;
+		else if (_player.y < _ball.y)
+			currentMove = PInputType.Up;
 		else if (_player.y > _ball.y)
-			_player.Move (PInputType.Down);
+			currentMove = PInputType.Down;
 		else
-			_player.Move (PInputType.None);
-				
+			currentMove = PInputType.None;
+
+		_player.Move (currentMove);
 	}
 }

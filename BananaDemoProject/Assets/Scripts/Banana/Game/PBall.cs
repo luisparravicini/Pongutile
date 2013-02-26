@@ -1,48 +1,47 @@
 using System;
 using UnityEngine;
 
-public enum PBorder
+public enum PSide
 {
 	None,
 	Left,
 	Right,
 }
 
-
 public class PBall : FSprite
 {
 	private Vector2 _velocity;
-	private PBorder _borderTouched;
+	private PSide _borderTouched;
 	public bool canGoOutOfBounds;
+	private const float SPEED = 3.5f;
 	
 	public PBall () : base("ball.png")
 	{
 		canGoOutOfBounds = true;
-		Reset();
+		Reset ();
 	}
 	
-	public PBorder borderReached
-	{
+	public PSide borderReached {
 		get { return _borderTouched; }
 	}
 	
-	public bool ReachedBorder()
+	public bool ReachedBorder ()
 	{
-		return (_borderTouched != PBorder.None);
+		return (_borderTouched != PSide.None);
 	}
 
 	public void Reset ()
 	{
-		_velocity.x = 3.5f * PUtil.OneOrMinusOne();
-		_velocity.y = 3.5f * PUtil.OneOrMinusOne();
+		_velocity.x = SPEED * PUtil.OneOrMinusOne ();
+		_velocity.y = SPEED * PUtil.OneOrMinusOne ();
 		
-		_borderTouched = PBorder.None;
+		_borderTouched = PSide.None;
 	}
-		
+	
 	override public void Redraw (bool shouldForceDirty, bool shouldUpdateDepth)
 	{
 		if (canGoOutOfBounds && Math.Abs (x) > Futile.screen.halfWidth)
-			_borderTouched = (x < 0 ? PBorder.Left : PBorder.Right);
+			_borderTouched = (x < 0 ? PSide.Left : PSide.Right);
 		else {
 			if (Math.Abs (x) > Futile.screen.halfWidth)
 				_velocity.x *= -1;
@@ -56,20 +55,26 @@ public class PBall : FSprite
 		base.Redraw (shouldForceDirty, shouldUpdateDepth);
 	}
 
-	public void CollidesWith (PPlayer player)
+	public void CollidesWith (PPlayer player, PSide side)
 	{
-		moveToPaddleBorder(player);
+		moveToPaddleBorder (player, side);
 		
 		_velocity.x *= -1;
-		_velocity.y += player.speedY * 0.5f;
-		_borderTouched = PBorder.None;
+		
+		// Sometimes, touching the center of the paddle doubles the ball Y speed.
+		// This is to "fix" the case when both players are controlled by the AI, the ball has speedY == 0
+		// and none of the AI moves.
+		if (RXRandom.Float (1) > 0.3f && Math.Abs (player.speedY) < 0.1)
+			_velocity.y = SPEED * PUtil.OneOrMinusOne ();
+		else
+			_velocity.y += player.speedY * 0.5f;
 	}
 
-	public void moveToPaddleBorder (PPlayer player)
+	public void moveToPaddleBorder (PPlayer player, PSide side)
 	{
 		x = player.x;
-		float delta = player.width * player.anchorX + width*anchorX + 1;
-		if (_borderTouched == PBorder.Left)
+		float delta = player.width * player.anchorX + width * anchorX + 1;
+		if (side == PSide.Left)
 			x += delta;
 		else
 			x -= delta;
