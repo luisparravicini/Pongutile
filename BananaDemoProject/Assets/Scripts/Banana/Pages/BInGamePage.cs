@@ -48,6 +48,17 @@ public class BInGamePage : BPage
 		AddChild (_ball = new PBall ());
 		ThrowNewBall ();
 		
+		FSprite middle = new FSprite("middle.png");
+		float y = Futile.screen.halfHeight - middle.height;
+		while (y > -Futile.screen.halfHeight + middle.height) {
+			middle = new FSprite("middle.png");
+			middle.x = 0;
+			middle.y = y;
+			AddChild(middle);
+			
+			y -= middle.height * 1.5f;
+		}
+		
 		_closeButton = new FButton ("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
 		AddChild (_closeButton);
 		
@@ -88,7 +99,7 @@ public class BInGamePage : BPage
 	protected void ThrowNewBall ()
 	{
 		_ball.Reset ();
-		_ball.x = _ball.height * PUtil.OneOrMinusOne();
+		_ball.x = _ball.width * 1.5f * PUtil.OneOrMinusOne();
 		_ball.y = RXRandom.Range (0, Futile.screen.halfHeight - _ball.height) * PUtil.OneOrMinusOne();
 	}
 	
