@@ -14,6 +14,8 @@ public class BInGamePage : BPage
 	private PPlayer _player1;
 	private PPlayer _player2;
 	
+	private PBall _ball;
+	
 	private PInput _userInput;
 
 	public BInGamePage()
@@ -47,6 +49,9 @@ public class BInGamePage : BPage
 		_player1.x = -Futile.screen.halfWidth * 0.8f;
 		_player2.x = Futile.screen.halfWidth * 0.8f;
 		
+		AddChild(_ball = new PBall());
+		_ball.x = Futile.screen.halfWidth;
+		_ball.y = 0;
 		
 		_closeButton = new FButton("CloseButton_normal.png", "CloseButton_over.png", "ClickSound");
 		AddChild(_closeButton);
