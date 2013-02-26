@@ -38,13 +38,11 @@ public class BMain : MonoBehaviour
 		FutileParams fparams = new FutileParams(true,true,true,shouldSupportPortraitUpsideDown);
 		
 		fparams.AddResolutionLevel(960.0f,	2.0f,	2.0f,	"_Scale2"); //iPhone retina
-
 		
 		fparams.origin = new Vector2(0.5f,0.5f);
 		
 		Futile.instance.Init (fparams);
 		
-		Futile.atlasManager.LoadAtlas("Atlases/BananaLargeAtlas");
 		Futile.atlasManager.LoadAtlas("Atlases/BananaGameAtlas");
 		Futile.atlasManager.LoadAtlas("Atlases/PongutileGameAtlas");
 		
