@@ -27,7 +27,7 @@ The code is based on Matt Rix's BananaDemo.
 Notes: 
 - If you choose a specific resolution, but the game window isn't large enough to contain that resolution, it'll open in some random scaled resolution, and everything will be wonky, which is annoying. 
 
-####The font used is [Imagine](http://www.dafont.com/es/imagine-font.font)
+####The font used is [Imagine](http://www.dafont.com/en/imagine-font.font)
 
 ##MIT License##
 
