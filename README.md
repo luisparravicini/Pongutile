@@ -10,6 +10,8 @@ The code is based on Matt Rix's BananaDemo.
 
 ##How to try the demo project##
 
+It's [online here](http://mulitasoft.com/experiments/Pongutile/)
+
 ####How to open the project
 
 - Grab the project from github and put it somewhere - [For the lazy, here's a zip of the whole repo](https://github.com/luisparravicini/Pongutile/zipball/master)
