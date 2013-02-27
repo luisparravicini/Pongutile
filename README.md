@@ -1,14 +1,12 @@
 #Pongutile
 
-A little test using Unity + Futile. As this is my first project with Unity (and also Futile) expect a fair amount of antipatterns, bad ways of doing things and all sorts of kludges.
+Pongutile is Pong implemented using Unity + [Futile](https://github.com/MattRix/Futile). I've made it as an exercise in learning Futile and Unity. As this is my first project using these technologies expect a fair amount of antipatterns, bad ways of doing things and all sorts of kludges.
 
-The code is based on Matt Rix's BananaDemo
+The game has no victory condition. You can play for hours, the score gets bigger and nothing else happens. From within the game screen you can go back to the title screen pressing Escape.
 
-___
 
-##Go to http://struct.ca/futile for videos and other links
+The code is based on Matt Rix's BananaDemo.
 
-##Ask questions on http://reddit.com/r/futile
 
 ##How to try the demo project##
 
@@ -28,10 +26,8 @@ ___
 
 Notes: 
 - If you choose a specific resolution, but the game window isn't large enough to contain that resolution, it'll open in some random scaled resolution, and everything will be wonky, which is annoying. 
-- If you're on OSX and you own iOS Basic or Pro, you can choose iOS instead of standalone
 
-####The code and art assets (except for the font) can be used for anything
-####The font is [Imagine](http://www.dafont.com/es/imagine-font.font)
+####The font used is [Imagine](http://www.dafont.com/es/imagine-font.font)
 
 ##MIT License##
 
